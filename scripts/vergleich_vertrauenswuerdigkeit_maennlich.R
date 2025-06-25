@@ -1,15 +1,15 @@
 # 1. Den Datensatz 'ds' der Variable trust_data zuweisen und dann...
-trust_data <- ds %>%
+trust_data_male <- ds %>%
   # Nur Datensätze betrachtet, welche abgeschlossen wurden
-  filter(FINISHED == TRUE) %>%
+  filter(FINISHED == TRUE, SD01 == "weiblich") %>%
   # 2. Die gesammelten Fragen für Präferenz in einen Mittelwert speichern
   # und dann...
   rowwise() %>%
   mutate(
     vertrauen_Stimme_A = mean(c(B004_01, B004_02, B004_03), 
-                               na.rm = TRUE),
+                              na.rm = TRUE),
     vertrauen_Stimme_B = mean(c(B104_01, B104_02, B104_03), 
-                               na.rm = TRUE)
+                              na.rm = TRUE)
   ) %>%
   ungroup() %>%
   
@@ -27,10 +27,10 @@ trust_data <- ds %>%
   mutate(stimmtyp = sub("vertrauen_", "", stimmtyp))
 
 # 6. Erstelle ein Boxplot mit den Daten aus 'preference_data'
-ggplot(trust_data, aes(x = stimmtyp, y = vertrauen, fill = stimmtyp)) +
+ggplot(trust_data_male, aes(x = stimmtyp, y = vertrauen, fill = stimmtyp)) +
   geom_boxplot(width = 0.5) +
   labs(
-    title = "Bevorzugung von warmer vs. neutraler KI-Stimme",
+    title = "Bevorzugung von warmer vs. neutraler KI-Stimme bei männlichen Teilnehmern",
     subtitle = "Vergleich der Vertrauenswürdigkeit",
     x = "Typ der KI-Stimme",
     y = "Durchschnittliche Vertrauen-Bewertung (Skala 1-5)"
@@ -44,4 +44,4 @@ theme(
 )
 
 # 7. Diagramm im 'output'-Ordner speichern
-ggsave("output/vergleich_vertrauenswuerdigkeit_weiblich.jpg", width = 8, height = 6)
+ggsave("output/vergleich_vertrauenswuerdigkeit_männlich.jpg", width = 8, height = 6)
