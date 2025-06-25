@@ -6,9 +6,9 @@ analysis_data <- ds %>%
   # und dann...
   rowwise() %>%
   mutate(
-    praeferenz_Stimme_A = mean(c(B001_01, B001_02, B001_03, B001_04), 
+    praeferenz_Stimme_A = mean(c(B001_01, B001_02, B001_03), 
                                na.rm = TRUE),
-    praeferenz_Stimme_B = mean(c(B101_01, B101_02, B101_03, B101_04), 
+    praeferenz_Stimme_B = mean(c(B101_01, B101_02, B101_03), 
                                na.rm = TRUE),
     Alter = SD02_01,
     praeferenz_differenz = praeferenz_Stimme_A - praeferenz_Stimme_B
@@ -26,7 +26,7 @@ analysis_data <- ds %>%
 # 5. Erstelle ein Streudiagramm (Scatter Plot) mit den Daten aus 'analysis_data'
 ggplot(analysis_data, aes(x = Alter, y = praeferenz_differenz)) +
   geom_point(alpha = 0.6, color = "darkred") +
-  geom_smooth(method = "lm", se = FALSE, color = "black") +
+  geom_smooth(method = "lm", se = TRUE, color = "black") +
   geom_hline(yintercept = 0, linetype = "dashed", color = "black") +
   labs(
     title = "Zusammenhang zwischen Alter und Stimmpräferenz",

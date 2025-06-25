@@ -26,7 +26,7 @@ analysis_data <- ds %>%
 # 5. Erstelle ein Streudiagramm (Scatter Plot) mit den Daten aus 'analysis_data'
 ggplot(analysis_data, aes(x = Alter, y = vertrauen_differenz)) +
   geom_point(alpha = 0.6, color = "darkred") +
-  geom_smooth(method = "lm", se = FALSE, color = "black") +
+  geom_smooth(method = "lm", se = TRUE, color = "black") +
   geom_hline(yintercept = 0, linetype = "dashed", color = "black") +
   labs(
     title = "Zusammenhang zwischen Alter und Stimmvertrauen",

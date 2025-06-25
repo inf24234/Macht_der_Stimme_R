@@ -1,5 +1,16 @@
 # 1. Den Datensatz 'ds' der Variable preference_data zuweisen und dann...
 preference_data_female <- ds %>%
+  # 1.1. Erstelle eine neue Spalte mit den Namen 'Geschlecht'
+  # und bennent die Zeilen je nach bestimmten Wert um.
+  mutate(
+    Geschlecht = case_when(
+      SD01 == 1 ~ "Männlich",
+      SD01 == 2 ~ "Weiblich",
+      SD01 == 3 ~ "nicht-binär / genderqueer",
+      SD01 == 4 ~ "kein Geschlecht",
+      TRUE ~ as.character(SD01)
+    ),
+  ) %>%
   # Nur Datensätze betrachtet, welche abgeschlossen wurden 
   # und von weiblichen Teilnehmer sind
   filter(FINISHED == TRUE, SD01 == "weiblich") %>%
@@ -7,9 +18,9 @@ preference_data_female <- ds %>%
   # und dann...
   rowwise() %>%
     mutate(
-      praeferenz_Stimme_A = mean(c(B001_01, B001_02, B001_03, B001_04), 
+      praeferenz_Stimme_A = mean(c(B001_01, B001_02, B001_03), 
                                  na.rm = TRUE),
-      praeferenz_Stimme_B = mean(c(B101_01, B101_02, B101_03, B101_04), 
+      praeferenz_Stimme_B = mean(c(B101_01, B101_02, B101_03), 
                                  na.rm = TRUE)
     ) %>%
     ungroup() %>%

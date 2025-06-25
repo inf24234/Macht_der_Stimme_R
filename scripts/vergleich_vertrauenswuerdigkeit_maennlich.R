@@ -1,7 +1,18 @@
 # 1. Den Datensatz 'ds' der Variable trust_data zuweisen und dann...
 trust_data_male <- ds %>%
+  # 1.1. Erstelle eine neue Spalte mit den Namen 'Geschlecht'
+  # und bennent die Zeilen je nach bestimmten Wert um.
+  mutate(
+    Geschlecht = case_when(
+      SD01 == 1 ~ "Männlich",
+      SD01 == 2 ~ "Weiblich",
+      SD01 == 3 ~ "nicht-binär / genderqueer",
+      SD01 == 4 ~ "kein Geschlecht",
+      TRUE ~ as.character(SD01)
+    ),
+  ) %>%
   # Nur Datensätze betrachtet, welche abgeschlossen wurden
-  filter(FINISHED == TRUE, SD01 == "weiblich") %>%
+  filter(FINISHED == TRUE, SD01 == "männlich") %>%
   # 2. Die gesammelten Fragen für Präferenz in einen Mittelwert speichern
   # und dann...
   rowwise() %>%

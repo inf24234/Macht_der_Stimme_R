@@ -6,9 +6,9 @@ preference_data <- ds %>%
   # und dann...
   rowwise() %>%
     mutate(
-      praeferenz_Stimme_A = mean(c(B001_01, B001_02, B001_03, B001_04), 
+      praeferenz_Stimme_A = mean(c(B001_01, B001_02, B001_03), 
                                 na.rm = TRUE),
-      praeferenz_Stimme_B = mean(c(B101_01, B101_02, B101_03, B101_04), 
+      praeferenz_Stimme_B = mean(c(B101_01, B101_02, B101_03), 
                                 na.rm = TRUE)
     ) %>%
   ungroup() %>%
