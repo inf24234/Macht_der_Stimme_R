@@ -24,19 +24,20 @@ trust_single_data <- ds %>%
   mutate(
     stimmtyp = case_when(
       grepl("B004", frage_code) ~ "Warme Stimme (A)",
-      grepl("B104", frage_code) ~ "neutrale Stimme (B)"
+      grepl("B104", frage_code) ~ "Neutrale Stimme (B)"
     ),
     frage = case_when(
       grepl("_01$", frage_code) ~ "Wie vertrauenswürdig wirkt diese Stimme?",
       grepl("_02$", frage_code) ~ "Wie kompetent wirkt der Sprecher?",
       grepl("_03$", frage_code) ~ "Wie glaubwürdig finden Sie diese Stimme?"
-    )
+    ),
+    stimmtyp = factor(stimmtyp, levels = c("Warme Stimme (A)", "Neutrale Stimme (B)"))
   ) %>%
   
   # 6. Zeilen mit fehlenden Werten entfernen
   na.omit()
 
-# 6. Erstelle ein Boxplot mit den Daten aus 'trust_single_data'
+# 7. Erstelle ein Boxplot mit den Daten aus 'trust_single_data'
 ggplot(trust_single_data, aes(x = frage, y = vertrauen, fill = stimmtyp)) +
   geom_boxplot(width = 0.7) +
   labs(
@@ -53,5 +54,5 @@ ggplot(trust_single_data, aes(x = frage, y = vertrauen, fill = stimmtyp)) +
     legend.position = "top"
   )
 
-# 7. Diagramm im 'output'-Ordner speichern
+# 8. Diagramm im 'output'-Ordner speichern
 ggsave("output/vergleich_einzelne_vertrauenswuerdigkeit.jpg", width = 8, height = 6)
