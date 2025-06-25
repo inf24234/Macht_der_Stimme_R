@@ -15,6 +15,9 @@ ds_file = file.choose()
 # setwd("./")
 # ds_file = "rdata_Befragung478371_2025-06-24_19-30.csv"
 
+# --- Im ersten Schritt bis hierhin das Skript laufen lassen#
+# --- Danach den restlichen Abschnitt ausführen
+
 options(encoding = "UTF-8")
 ds = read.delim(
   file=ds_file, encoding="UTF-8", fileEncoding="UTF-8",

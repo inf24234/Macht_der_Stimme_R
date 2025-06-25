@@ -1,4 +1,4 @@
-# 1. Den Datensatz 'ds' der Variable trust_data zuweisen und dann...
+# 1. Den Datensatz 'ds' der Variable 'trust_data_male' zuweisen und dann...
 trust_data_male <- ds %>%
   # 1.1. Erstelle eine neue Spalte mit den Namen 'Geschlecht'
   # und bennent die Zeilen je nach bestimmten Wert um.
@@ -37,7 +37,7 @@ trust_data_male <- ds %>%
   # 5. Ersetzte 'praeferenz_' durch '' in den einzelnen Spalten
   mutate(stimmtyp = sub("vertrauen_", "", stimmtyp))
 
-# 6. Erstelle ein Boxplot mit den Daten aus 'preference_data'
+# 6. Erstelle ein Boxplot mit den Daten aus 'trust_data_male'
 ggplot(trust_data_male, aes(x = stimmtyp, y = vertrauen, fill = stimmtyp)) +
   geom_boxplot(width = 0.5) +
   labs(

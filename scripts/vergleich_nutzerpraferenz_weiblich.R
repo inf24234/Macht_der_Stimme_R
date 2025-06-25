@@ -1,4 +1,4 @@
-# 1. Den Datensatz 'ds' der Variable preference_data zuweisen und dann...
+# 1. Den Datensatz 'ds' der Variable 'preference_data_female' zuweisen und dann...
 preference_data_female <- ds %>%
   # 1.1. Erstelle eine neue Spalte mit den Namen 'Geschlecht'
   # und bennent die Zeilen je nach bestimmten Wert um.
@@ -38,7 +38,7 @@ preference_data_female <- ds %>%
     # 5. Ersetzte 'praeferenz_' durch '' in den einzelnen Spalten
     mutate(stimmtyp = sub("praeferenz_", "", stimmtyp))
 
-# 6. Erstelle ein Boxplot mit den Daten aus 'preference_data'
+# 6. Erstelle ein Boxplot mit den Daten aus 'preference_data_female'
 ggplot(preference_data_female, aes(x = stimmtyp, y = praeferenz, fill = stimmtyp)) +
   geom_boxplot(width = 0.5) +
   labs(

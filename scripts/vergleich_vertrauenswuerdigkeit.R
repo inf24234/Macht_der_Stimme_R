@@ -1,4 +1,4 @@
-# 1. Den Datensatz 'ds' der Variable trust_data zuweisen und dann...
+# 1. Den Datensatz 'ds' der Variable 'trust_data' zuweisen und dann...
 trust_data <- ds %>%
   # Nur Datensätze betrachtet, welche abgeschlossen wurden
   filter(FINISHED == TRUE) %>%
@@ -26,7 +26,7 @@ trust_data <- ds %>%
   # 5. Ersetzte 'praeferenz_' durch '' in den einzelnen Spalten
   mutate(stimmtyp = sub("vertrauen_", "", stimmtyp))
 
-# 6. Erstelle ein Boxplot mit den Daten aus 'preference_data'
+# 6. Erstelle ein Boxplot mit den Daten aus 'trust_data'
 ggplot(trust_data, aes(x = stimmtyp, y = vertrauen, fill = stimmtyp)) +
   geom_boxplot(width = 0.5) +
   labs(
@@ -44,4 +44,4 @@ theme(
 )
 
 # 7. Diagramm im 'output'-Ordner speichern
-ggsave("output/vergleich_vertrauenswuerdigkeit_weiblich.jpg", width = 8, height = 6)
+ggsave("output/vergleich_vertrauenswuerdigkeit.jpg", width = 8, height = 6)
